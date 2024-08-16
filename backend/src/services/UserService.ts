@@ -1,9 +1,9 @@
 import { compareSync } from 'bcryptjs';
-import isValidEmail from '../utils/isValidEmail';
 import UserModel from '../models/UserModel';
 import { IUserModel } from '../Interfaces/users/IUserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import { jwtSign } from '../utils/jwt.util';
+import isValidEmail from '../utils/isValidEmail';
 
 export default class UserService {
   constructor(private userModel: IUserModel = new UserModel()) {}
