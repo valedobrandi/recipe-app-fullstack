@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { jwtVerify } from '../utils/jwt.util';
 import UserService from '../services/UserService';
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 

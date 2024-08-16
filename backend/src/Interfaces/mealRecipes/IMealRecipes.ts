@@ -1,5 +1,5 @@
-export interface IFoodRecipes {
-  id: number;
+export interface IMealRecipes {
+  idMeal: number;
   strMeal: string;
   strMealThumb: string;
   strCategory: string;
