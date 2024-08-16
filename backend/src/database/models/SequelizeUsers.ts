@@ -11,6 +11,8 @@ class SequelizeUser extends Model<InferAttributes<SequelizeUser>,
 InferCreationAttributes<SequelizeUser>> {
   declare id: CreationOptional<number>;
 
+  declare username: string;
+
   declare email: string;
 
   declare password: string;
@@ -22,6 +24,10 @@ SequelizeUser.init({
     allowNull: false,
     primaryKey: true,
     autoIncrement: true,
+  },
+  username: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
   },
   email: {
     type: DataTypes.STRING(50),
