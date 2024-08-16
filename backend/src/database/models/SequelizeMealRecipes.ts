@@ -8,9 +8,9 @@ import {
 } from 'sequelize';
 import db from '.';
 
-class SequelizeFoodRecipes extends Model<InferAttributes<SequelizeFoodRecipes>,
-InferCreationAttributes<SequelizeFoodRecipes>> {
-  declare id: CreationOptional<number>;
+class SequelizeMealRecipes extends Model<InferAttributes<SequelizeMealRecipes>,
+InferCreationAttributes<SequelizeMealRecipes>> {
+  declare idMeal: CreationOptional<number>;
   declare strMeal: string;
   declare strMealThumb: string;
   declare strCategory: string;
@@ -59,8 +59,8 @@ InferCreationAttributes<SequelizeFoodRecipes>> {
   declare strMeasure20: string;
 }
 
-SequelizeFoodRecipes.init({
-  id: {
+SequelizeMealRecipes.init({
+  idMeal: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
@@ -252,9 +252,8 @@ SequelizeFoodRecipes.init({
   },
 }, {
   sequelize: db,
-  modelName: 'foodRecipes',
+  modelName: 'mealRecipes',
   timestamps: false,
-  underscored: true,
 });
 
-export default SequelizeFoodRecipes;
+export default SequelizeMealRecipes;

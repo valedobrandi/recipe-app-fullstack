@@ -1,9 +1,9 @@
 import { Model, QueryInterface, DataTypes } from 'sequelize';
-import { IFoodRecipes } from '../../Interfaces/foodRecipes/IFoodRecipes';
+import { IMealRecipes as IMealsRecipe } from '../../Interfaces/mealRecipes/IMealRecipes';
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<IFoodRecipes>>('foodRecipes', {
-      id: {
+    return queryInterface.createTable<Model<IMealsRecipe>>('mealRecipes', {
+      idMeal: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -196,6 +196,6 @@ export default {
     });
   },
   down(queryInterface: QueryInterface) {
-    return queryInterface.dropTable('foodRecipes');
+    return queryInterface.dropTable('mealRecipes');
   },
 };
