@@ -11,6 +11,11 @@ export default class MealRecipeModel implements IMealRecipesModel {
     return dbData;
   }
 
+  public async findAllByColumn(attributes: string[]): Promise<SequelizeMealRecipes[]> {
+    const dbData = await this.model.findAll({ attributes });
+    return dbData;
+  }
+
   public async findById(idMeal: string): Promise<IMealRecipes | null> {
     const dbData = await this.model.findByPk(idMeal);
     if (!dbData) return null;
@@ -26,6 +31,17 @@ export default class MealRecipeModel implements IMealRecipesModel {
   public async findByFirstNameLetter(query: string): Promise<IMealRecipes[] | null> {
     const dbData = await this.model.findAll({
       where: { strMeal: { [Op.like]: `${query}%` } },
+    });
+    if (!dbData) return null;
+    return dbData;
+  }
+
+  public async findByColumnsAndQuery(query: string, columnsList: Array<string>)
+    : Promise<IMealRecipes[] | null> {
+    const dbData = await this.model.findAll({
+      where: { [Op.or]: columnsList.map((strIngredient: string) => ({
+        [strIngredient]: { [Op.like]: `${query}%` },
+      })) },
     });
     if (!dbData) return null;
     return dbData;

@@ -7,6 +7,7 @@ export default class MealCategoriesModel implements IMealCategoriesModel {
 
   public async findAll(): Promise<Array<IMealCategories>> {
     const dbReturn = await this.model.findAll();
+
     return dbReturn;
   }
 }

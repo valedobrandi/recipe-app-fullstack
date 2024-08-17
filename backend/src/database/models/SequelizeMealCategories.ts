@@ -3,15 +3,14 @@ import {
   Model,
   InferAttributes,
   InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 import db from '.';
 
 class SequelizeCategories extends Model<InferAttributes<SequelizeCategories>,
 InferCreationAttributes<SequelizeCategories>> {
-  declare id: CreationOptional<number>;
+  declare id: number;
 
-  declare category: string;
+  declare strCategory: string;
 }
 
 SequelizeCategories.init({
@@ -21,7 +20,7 @@ SequelizeCategories.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  category: {
+  strCategory: {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
@@ -29,7 +28,6 @@ SequelizeCategories.init({
   sequelize: db,
   modelName: 'mealCategories',
   timestamps: false,
-  underscored: true,
 });
 
 export default SequelizeCategories;

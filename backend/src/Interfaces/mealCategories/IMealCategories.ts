@@ -1,4 +1,4 @@
 export interface IMealCategories {
   id: number;
-  category: string;
+  strCategory: string;
 }

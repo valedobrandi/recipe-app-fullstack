@@ -1,5 +1,5 @@
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
-import MealCategories from '../models/MealCategories.Model';
+import MealCategories from '../models/MealCategoriesModel';
 import { IMealCategories } from '../Interfaces/mealCategories/IMealCategories';
 
 export default class MealCategoriesService {

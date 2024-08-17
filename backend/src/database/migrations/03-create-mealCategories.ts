@@ -1,5 +1,4 @@
 import { Model, QueryInterface, DataTypes } from 'sequelize';
-import { IUsers } from '../../Interfaces/users/IUsers';
 import { IMealCategories } from '../../Interfaces/mealCategories/IMealCategories';
 export default {
   up(queryInterface: QueryInterface) {
@@ -10,7 +9,7 @@ export default {
             primaryKey: true,
             autoIncrement: true,
           },
-          category: {
+          strCategory: {
             type: DataTypes.STRING,
             allowNull: false,
           },

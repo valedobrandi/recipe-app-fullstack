@@ -3,13 +3,12 @@ import {
   Model,
   InferAttributes,
   InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 import db from '.';
 
 class SequelizeUser extends Model<InferAttributes<SequelizeUser>,
 InferCreationAttributes<SequelizeUser>> {
-  declare id: CreationOptional<number>;
+  declare id: number;
 
   declare username: string;
 
