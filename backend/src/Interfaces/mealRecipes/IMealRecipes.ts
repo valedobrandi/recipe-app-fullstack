@@ -1,11 +1,4 @@
-export interface IMealRecipes {
-  idMeal: number;
-  strMeal: string;
-  strMealThumb: string;
-  strCategory: string;
-  strArea: string;
-  strYoutube: string;
-  strInstructions: string;
+export interface IIngredients {
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;
@@ -26,6 +19,15 @@ export interface IMealRecipes {
   strIngredient18: string;
   strIngredient19: string;
   strIngredient20: string;
+}
+
+export interface IMealRecipes extends IIngredients {
+  idMeal: number;
+  strMeal: string;
+  strMealThumb: string;
+  strCategory: string;
+  strArea: string;
+  strYoutube: string;
   strMeasure1: string;
   strMeasure2: string;
   strMeasure3: string;

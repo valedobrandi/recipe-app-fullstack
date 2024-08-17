@@ -4,13 +4,12 @@ import {
   Model,
   InferAttributes,
   InferCreationAttributes,
-  CreationOptional,
 } from 'sequelize';
 import db from '.';
 
 class SequelizeMealRecipes extends Model<InferAttributes<SequelizeMealRecipes>,
 InferCreationAttributes<SequelizeMealRecipes>> {
-  declare idMeal: CreationOptional<number>;
+  declare idMeal: number;
   declare strMeal: string;
   declare strMealThumb: string;
   declare strCategory: string;
