@@ -10,7 +10,25 @@ router.get(
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => foodRecipeController.findAll(req, res, next),
+  ) => foodRecipeController.findByName(req, res, next),
+);
+
+router.get(
+  '/letter',
+  (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => foodRecipeController.findByFirstNameLetter(req, res, next),
+);
+
+router.get(
+  '/random',
+  (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => foodRecipeController.countRow(req, res, next),
 );
 
 router.get(
