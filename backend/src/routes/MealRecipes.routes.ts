@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import MealRecipeController from '../controllers/MealRecipeController';
 
-const foodRecipeController = new MealRecipeController();
+const mealRecipeController = new MealRecipeController();
 const router = Router();
 
 router.get(
@@ -10,7 +10,7 @@ router.get(
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => foodRecipeController.findByName(req, res, next),
+  ) => mealRecipeController.findByName(req, res, next),
 );
 
 router.get(
@@ -19,7 +19,7 @@ router.get(
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => foodRecipeController.findByFirstNameLetter(req, res, next),
+  ) => mealRecipeController.findByFirstNameLetter(req, res, next),
 );
 
 router.get(
@@ -28,7 +28,7 @@ router.get(
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => foodRecipeController.countRow(req, res, next),
+  ) => mealRecipeController.randomRecipe(req, res, next),
 );
 
 router.get(
@@ -37,7 +37,16 @@ router.get(
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => foodRecipeController.findById(req, res, next),
+  ) => mealRecipeController.findById(req, res, next),
+);
+
+router.get(
+  '/categories',
+  (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => mealRecipeController.findAllMealCategories(req, res, next),
 );
 
 export default router;

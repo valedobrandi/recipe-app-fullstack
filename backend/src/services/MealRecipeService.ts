@@ -33,7 +33,7 @@ export default class MealRecipeService {
     return { status: 'SUCCESSFUL', data: { meals: mealRecipe } };
   }
 
-  public async countRow(): Promise<ServiceResponse<IMealRecipes[]>> {
+  public async randomRecipe(): Promise<ServiceResponse<IMealRecipes[]>> {
     const mealRecipes = await this.mealRecipeModel.findAll();
     const tableLenght = mealRecipes.length;
     const index = Math.floor(Math.random() * tableLenght) + 1;

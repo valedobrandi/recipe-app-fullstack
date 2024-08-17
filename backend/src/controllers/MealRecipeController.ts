@@ -1,9 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 import MealRecipeService from '../services/MealRecipeService';
+import MealCategoriesService from '../services/MealCategoriesService';
 
 export default class MealRecipeController {
-  constructor(private mealRecipeService = new MealRecipeService()) { }
+  constructor(
+    private mealCategoriesService = new MealCategoriesService(),
+    private mealRecipeService = new MealRecipeService(),
+  ) { }
 
   public async findByName(req: Request, res: Response, next: NextFunction) {
     try {
@@ -29,9 +33,9 @@ export default class MealRecipeController {
     }
   }
 
-  public async countRow(req: Request, res: Response, next: NextFunction) {
+  public async randomRecipe(req: Request, res: Response, next: NextFunction) {
     try {
-      const { status, data } = await this.mealRecipeService.countRow();
+      const { status, data } = await this.mealRecipeService.randomRecipe();
       res.status(mapStatusHTTP(status)).json(data);
     } catch (error) {
       next(error);
@@ -43,6 +47,15 @@ export default class MealRecipeController {
       const { q } = req.params;
       const { status, data } = await this.mealRecipeService.findByFirstNameLetter(q);
       res.status(mapStatusHTTP(status)).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public async findAllMealCategories(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { status, data } = await this.mealCategoriesService.findAll();
+      res.status(mapStatusHTTP(status)).json({ meals: data });
     } catch (error) {
       next(error);
     }
