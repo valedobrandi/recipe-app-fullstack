@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { DataType, RecipeDetailType } from "../types/type";
+import { RecipeDetailType } from "../types/type";
 import UniqueRecipeContext from "../Context/UniqueRecipeContext";
 import { recipeDetails } from "../services/recipeDetails";
 
@@ -9,13 +9,14 @@ const useSearchRecipeById = (id: string | undefined) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error>();
 
-  const { onSetRecipeDetail, recipeDetail: data } =
+  const { onSetRecipeDetail, recipeDetail: dataRecipe } =
     useContext(UniqueRecipeContext);
 
   const isValid = location.pathname.includes("meals");
-  const path = isValid ? "themealdb" : "thecocktaildb";
+  const path = isValid 
+  ? `http://www.localhost:3001/meals/${id}` 
+  : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
 
-  const dataRecipe: DataType = data ? data : [];
 
   useEffect(() => {
     const fetchData = async () => {
