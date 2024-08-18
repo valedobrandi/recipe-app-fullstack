@@ -28,6 +28,7 @@ export interface IMealRecipes extends IIngredients {
   strCategory: string;
   strArea: string;
   strYoutube: string;
+  strInstructions: string;
   strMeasure1: string;
   strMeasure2: string;
   strMeasure3: string;

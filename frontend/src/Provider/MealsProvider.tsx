@@ -26,7 +26,7 @@ export default function MealsProvider({ children }: MealsProviderType) {
 
   const {
     data: categories, loading: loadingCategories
-  } = useFetch(`${MEALS_CATEGORIES_API}list`) as EffectCategoryType;
+  } = useFetch(`${MEALS_CATEGORIES_API}`) as EffectCategoryType;
 
   const {
     data: meals, error, fetchData, loading,

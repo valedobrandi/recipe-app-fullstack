@@ -1,7 +1,7 @@
 FROM node:16.14
-WORKDIR /app-backend
+WORKDIR /app-frontend
 COPY package*.json ./
 RUN npm install
 COPY . .
-EXPOSE 3000
+EXPOSE 3001
 ENTRYPOINT [ "npm", "run", "dev" ]
