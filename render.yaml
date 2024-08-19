@@ -47,6 +47,7 @@ services:
       - containerPort: 3001
         hostPort: 5173
 
+database:
   - type: database
     name: db
     plan: free
@@ -58,17 +59,4 @@ services:
     autoDeploy: true
     ports:
       - containerPort: 3306
-        hostPort: 3306
-
-  - type: database
-    name: db_development
-    plan: free
-    image: mysql:8.0.32
-    envVars:
-      - key: MYSQL_ROOT_PASSWORD
-        value: db_development
-    healthCheckPath: /
-    autoDeploy: true
-    ports:
-      - containerPort: 3360
         hostPort: 3306
