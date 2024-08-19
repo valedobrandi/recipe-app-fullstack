@@ -22,9 +22,7 @@ const useSearchRecipeById = (id: string | undefined) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          `https://www.${path}.com/api/json/v1/1/lookup.php?i=${id}`
-        );
+        const response = await fetch(path);
         const data = await response.json();
         onSetRecipeDetail(data);
       } catch (error) {

@@ -1,4 +1,4 @@
-FROM node:16.14
+FROM node:18-slim
 WORKDIR /app-backend
 COPY package*.json ./
 RUN npm install

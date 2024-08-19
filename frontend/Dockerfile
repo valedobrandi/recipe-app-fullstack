@@ -1,7 +1,7 @@
-FROM node:16.14
+FROM node:18-slim
 WORKDIR /app-frontend
 COPY package*.json ./
 RUN npm install
 COPY . .
 EXPOSE 3001
-ENTRYPOINT [ "npm", "run", "dev" ]
+CMD  [ "npm", "run", "dev" ]
