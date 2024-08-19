@@ -1,0 +1,74 @@
+services:
+  - type: web
+    name: app_frontend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run dev
+    envVars:
+      - key: APP_PORT
+        value: 3000
+    healthCheckPath: /
+    dockerfilePath: ./frontend/Dockerfile
+    autoDeploy: true
+    ports:
+      - containerPort: 3000
+        hostPort: 3000
+
+  - type: web
+    name: app_backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run dev
+    envVars:
+      - key: APP_PORT
+        value: 3001
+      - key: JWT_SECRET
+        value: jwt_secret
+      - key: DB_USER
+        value: root
+      - key: DB_PASS
+        value: 123456
+      - key: DB_HOST
+        value: db
+      - key: DB_PORT
+        value: 3306
+      - key: DB_PORT_DEVELOPMENT
+        value: 3360
+      - key: DB_HOST_DEVELOPMENT
+        value: db_development
+      - key: DB_PASS_DEVELOPMENT
+        value: db_development
+    healthCheckPath: /
+    dockerfilePath: ./backend/Dockerfile
+    autoDeploy: true
+    ports:
+      - containerPort: 3001
+        hostPort: 5173
+
+  - type: database
+    name: db
+    plan: free
+    image: mysql:8.0.32
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: 123456
+    healthCheckPath: /
+    autoDeploy: true
+    ports:
+      - containerPort: 3306
+        hostPort: 3306
+
+  - type: database
+    name: db_development
+    plan: free
+    image: mysql:8.0.32
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: db_development
+    healthCheckPath: /
+    autoDeploy: true
+    ports:
+      - containerPort: 3360
+        hostPort: 3306
