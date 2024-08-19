@@ -29,9 +29,6 @@ services:
       - DB_PASS=123456
       - DB_HOST=db
       - DB_PORT=3306
-      - DB_PORT_DEVELOPMENT=3360
-      - DB_HOST_DEVELOPMENT=db_development
-      - DB_PASS_DEVELOPMENT=db_development
     healthcheck:
       test: [ "CMD", "lsof", "-t", "-i:3001" ]
       timeout: 10s
@@ -53,6 +50,7 @@ services:
   db_development:
     image: mysql:8.0.32
     container_name: db_development
+    build: ./databases
     ports:
       - 3360:3306
     environment:
