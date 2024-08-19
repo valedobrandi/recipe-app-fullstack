@@ -14,7 +14,7 @@ const useSearchRecipeById = (id: string | undefined) => {
 
   const isValid = location.pathname.includes("meals");
   const path = isValid
-    ? `${process.env.APIBACKEND}/meals/${id}`
+    ? `${import.meta.env.VITE_MEAL_API}/meals/${id}`
     : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
 
 
