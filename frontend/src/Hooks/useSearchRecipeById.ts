@@ -13,9 +13,9 @@ const useSearchRecipeById = (id: string | undefined) => {
     useContext(UniqueRecipeContext);
 
   const isValid = location.pathname.includes("meals");
-  const path = isValid 
-  ? `http://www.localhost:3001/meals/${id}` 
-  : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const path = isValid
+    ? `${process.env.APIBACKEND}/meals/${id}`
+    : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
 
 
   useEffect(() => {

@@ -11,7 +11,6 @@
     "build": "tsc --project tsconfig.json",
     "prestart": "npm run build",
     "start": "node ./build/server.js",
-    "predev": "npm run db:reset",
     "dev": "tsnd --watch \"./src/**\" --transpile-only ./src/server.ts",
     "lint": "eslint ./src --ext .ts"
   },

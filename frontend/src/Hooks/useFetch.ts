@@ -11,6 +11,8 @@ function useFetch(url: string) {
       try {
         const request = await fetch(url);
         const response = await request.json();
+        console.log(response);
+
         setData(response);
       } catch (err) {
         if (err instanceof Error) setError(err);

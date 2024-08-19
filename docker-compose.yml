@@ -25,36 +25,21 @@ services:
     environment:
       - APP_PORT=3001
       - JWT_SECRET=jwt_secret
-      - DB_USER=root
-      - DB_PASS=123456
-      - DB_HOST=db
-      - DB_PORT=3306
+      - MYSQLUSER=root
+      - MYSQLPASSWORD=123456
+      - MYSQLHOST=db
+      - MYSQLPORT=3306
     healthcheck:
       test: [ "CMD", "lsof", "-t", "-i:3001" ]
       timeout: 10s
       retries: 5
   db:
-    image: mysql:8.0.32
+    build: ./database
     container_name: db
     ports:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-    restart: 'always'
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      timeout: 10s
-      retries: 5
-    cap_add:
-      - SYS_NICE
-  db_development:
-    image: mysql:8.0.32
-    container_name: db_development
-    build: ./databases
-    ports:
-      - 3360:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=db_development
     restart: 'always'
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
