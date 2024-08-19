@@ -4,7 +4,7 @@ const config: Options = {
   username: process.env.MYSQLUSER || 'root',
   password: process.env.MYSQLPASSWORD || '123456',
   database: 'APPLICATION_RECIPES',
-  host: process.env.MYSQLHOST || 'localhost',
+  host: process.env.MYSQL_PUBLIC_URL || 'localhost',
   port: Number(process.env.MYSQLPORT) || 3306,
   dialect: 'mysql',
   dialectOptions: {
