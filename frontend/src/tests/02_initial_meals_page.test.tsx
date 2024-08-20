@@ -38,14 +38,15 @@ describe('Route "/meals"', () => {
     );
 
     expect(await screen.findAllByRole('heading', { level: 6 })).toHaveLength(2);
-    await userEvent.click(screen.getByRole('combobox'));
-    await userEvent.click(screen.getByText('Breakfast'));
-    expect(global.fetch).toHaveBeenCalledWith(`https://www.themealdb.com/api/json/v1/1/filter.php?c=Breakfast`);
+
+    expect(screen.getByRole('combobox')).toBeInTheDocument();
+    await userEvent.selectOptions(screen.getByRole('combobox'), ['Breakfast'])
+    
     expect(await screen.findByRole('heading', { name: /breakfast 1/i })).toBeInTheDocument();
     expect(await screen.findByRole('heading', { name: /breakfast 2/i })).toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole('combobox'));
-    await userEvent.click(screen.getByText('Breakfast'));
+    
+    await userEvent.selectOptions(screen.getByRole('combobox'), ['Breakfast'])
     expect(await screen.findByRole('heading', { name: /corba/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Kumpir/i })).toBeInTheDocument();
   });

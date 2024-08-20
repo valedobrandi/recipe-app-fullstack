@@ -33,6 +33,7 @@ export default function MealsProvider({ children }: MealsProviderType) {
   } = useSearchRecipe('meals', 'idMeal')
 
   const handleFetch = async (radio = "", input = "") => {
+    
     switch (radio) {
       case "Ingredient":
         fetchData(`${MEALS_INGREDIENT_API}${input}`);
@@ -55,6 +56,7 @@ export default function MealsProvider({ children }: MealsProviderType) {
       setSelect('All')
       return fetchData(MEALS_NAME_API, false);
     }
+    
     fetchData(`${MEALS_BY_CATEGORIES_API}${category}`, false);
     categoryRef.current = category;
   };

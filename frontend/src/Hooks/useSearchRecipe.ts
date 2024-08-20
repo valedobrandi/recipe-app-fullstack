@@ -10,12 +10,13 @@ const useSearchRecipe = (key: string, idKey: string) => {
 
   const navigate = useNavigate();
 
-  const fetchData = async (url = "", redirect = true) => {
+  const fetchData = async (url: string, redirect = true) => {
     setLoading(true);
-    try {
+    try {      
+    
       const response = await fetch(url);
       const data = await response.json();
-
+      
       if (data[key].length === 0 || data[key] === "null") {
         return window.alert("Receita não encontrada!");
       }
@@ -29,7 +30,7 @@ const useSearchRecipe = (key: string, idKey: string) => {
       if (error instanceof Error) {
         console.log(error);
         setError(error);
-        return window.alert("Receita não encontrada!");
+       window.alert("Receita não encontrada!");
       }
     } finally {
       setLoading(false);

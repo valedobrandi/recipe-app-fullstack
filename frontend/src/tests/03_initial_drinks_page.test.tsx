@@ -41,13 +41,12 @@ describe('Route "/drinks"', () => {
     );
 
     expect(await screen.findAllByRole('heading', { level: 6 })).toHaveLength(3);
-    await userEvent.click(screen.getByRole('combobox'));
-    await userEvent.click(screen.getByText('Ordinary Drink'));
+    await userEvent.selectOptions(screen.getByRole('combobox'), ['Ordinary Drink'])
+  
     expect(await screen.findByRole('heading', { name: /ordinary drink 1/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /ordinary drink 2/i })).toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole('combobox'));
-    await userEvent.click(screen.getByText('Ordinary Drink'));
+    await userEvent.selectOptions(screen.getByRole('combobox'), ['Ordinary Drink'])
     expect(await screen.findByRole('heading', { name: /Aquamarine/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /A1/i })).toBeInTheDocument();
   });

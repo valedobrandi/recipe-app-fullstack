@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { RecipeDetailType } from "../types/type";
 import UniqueRecipeContext from "../Context/UniqueRecipeContext";
 import { recipeDetails } from "../services/recipeDetails";
+import { MEALS_BY_ID_API } from "../Provider/utils/mealsApi";
 
 const useSearchRecipeById = (id: string | undefined) => {
   const location = useLocation();
@@ -14,7 +15,7 @@ const useSearchRecipeById = (id: string | undefined) => {
 
   const isValid = location.pathname.includes("meals");
   const path = isValid
-    ? `${import.meta.env.VITE_MEAL_API}/meals/${id}`
+    ? `${MEALS_BY_ID_API}${id}`
     : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
 
 
