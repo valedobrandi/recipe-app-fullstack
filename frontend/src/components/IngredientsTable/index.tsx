@@ -15,9 +15,9 @@ export default function IngredientsTable({ ingredients, measures }: IngredientsT
                             <thead
                                 className="border-b border-neutral-200 font-medium dark:border-white/10">
                                 <tr>
-                                    <th scope="col" className="px-10 py-4">#</th>
-                                    <th scope="col" className="px-10 py-4">Ingredient</th>
-                                    <th scope="col" className="px-10 py-4">Measures</th>
+                                    <th scope="col" className="px-3 py-2 md:px-10 md:py-4">#</th>
+                                    <th scope="col" className="px-3 py-2 md:px-10 md:py-4">Ingredient</th>
+                                    <th scope="col" className="px-3 py-2 md:px-10 md:py-4">Measures</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -25,10 +25,10 @@ export default function IngredientsTable({ ingredients, measures }: IngredientsT
                                     const measure = measures.map((measure) => measure)
                                     return (
                                         <tr key={`${index}`}className="border-b border-neutral-200 dark:border-white/10">
-                                            <td className="whitespace-nowrap px-10 py-4 font-medium">{index}</td>
-                                            <td className="whitespace-nowrap px-10 py-4"
+                                            <td className="whitespace-nowrap px-3 py-2 md:px-10 md:py-4 font-medium">{index}</td>
+                                            <td className="whitespace-nowrap px-3 py-2 md:px-10 md:py-4"
                                                 >{ingredient}</td>
-                                                <td className="whitespace-nowrap px-10 py-4"
+                                                <td className="whitespace-nowrap px-3 py-2 md:px-10 md:py-4"
                                                 >{measure[index]}</td>
                                         </tr>
                                     )

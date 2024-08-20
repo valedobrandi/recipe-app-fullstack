@@ -35,14 +35,14 @@ export default function FavAndCopyBtn({ id }: { id: string }) {
   }
 
 
-  const isFavorite = isStore.find((fav: FavoriteType) => { return fav.id === id })
+  const isFavorite = isStore.find((fav: FavoriteType) => (Number(fav.id)) === Number(id));
+
   const handleFavorite = () => {
     if (id === null) return
-    const filter = favoriteRecipesStore.filter((fav: FavoriteType) => fav.id !== id);
+    const filter = favoriteRecipesStore.filter((fav: FavoriteType) => (Number(fav.id)) !== Number(id));    
     isFavorite ? setfavoriteRecipesStore(filter) : setfavoriteRecipesStore([...favoriteRecipesStore, favorite]);
   };
-
-
+  
   return (
     <div className="relative flex justify-center">
       {isValid && <ShareButton title={titleRef.current} />}
