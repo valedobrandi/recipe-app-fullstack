@@ -1,8 +1,18 @@
 import { NextFunction, Request, Response, Router } from 'express';
+import upload from '../multer';
 import MealRecipeController from '../controllers/MealRecipeController';
 
 const mealRecipeController = new MealRecipeController();
 const router = Router();
+
+router.post(
+  '/uploads/audio',
+  (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => mealRecipeController.newRecipe(req, res, next),
+);
 
 router.get(
   '/category',

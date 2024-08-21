@@ -1,23 +1,61 @@
+import { Button } from "@material-tailwind/react";
+import { useRef, useState } from "react";
+import { AudioRecorder } from "react-audio-voice-recorder";
+
 export default function AddRecipe() {
+  const [recipeText, setRecipeText] = useState('')
+  const [disabled, setDisabled] = useState(true)
+  const recordedBlob = useRef<Blob>()
+  
 
-let myHeaders = new Headers();
-myHeaders.append("X-API-KEY", import.meta.env.VITE_SPEECH_API);
+  function getAudio(audio: Blob) {
+    console.log(audio);
+    
+    const audioFileMeta = new File([audio], "recording.wav", {
+      type: audio.type,
+      lastModified: Date.now(),
+    });
+    recordedBlob.current = audioFileMeta
+    setDisabled(false)
+    console.log(audioFileMeta); 
+  }
 
-let formdata = new FormData();
-formdata.append("file", "file");
+async function fetchAudioToText() {
+  if (!recordedBlob.current ||  !import.meta.env.VITE_SPEECH_API) return;
+  const body = new FormData();
+  body.append('file', recordedBlob.current);
 
-let requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: formdata,
-  redirect: 'follow'
-};
+  const sendAudioFile = await fetch(`http://localhost:3001/meals/uploads/audio`, {
+    method: 'POST',
+    body,
+  });
 
-fetch("http://techhk.aoscdn.com/api/tasks/audio/recognition", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-    return (
+  console.log(sendAudioFile);
 
-    )
+  
+}
+
+
+  return (
+    <div>
+      <h1>New Recipe</h1>
+      <div className="flex flex-col items-center justify-center gap-8">
+        <h4>Record</h4>
+        <AudioRecorder
+          onRecordingComplete={getAudio}
+          audioTrackConstraints={{
+            noiseSuppression: true,
+            echoCancellation: true,
+          }}
+        />
+        <Button
+          size="lg"
+          loading={false}
+          disabled={disabled}
+          onClick={() => fetchAudioToText()} color="green">
+          add recipe
+        </Button>
+      </div>
+    </div>
+  )
 }

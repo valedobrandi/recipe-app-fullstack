@@ -6,7 +6,6 @@ import errorMiddleware from './middlewares/errorMiddleware';
 
 class App {
   public app: express.Express;
-
   constructor() {
     this.app = express();
 
@@ -43,5 +42,4 @@ class App {
   }
 }
 
-export { App };
-
+export default App;

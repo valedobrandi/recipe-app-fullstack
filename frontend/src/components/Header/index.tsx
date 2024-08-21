@@ -22,7 +22,7 @@ export default function Header({ title, isSearch = true, icon }: HeaderProps) {
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <img src={HeaderLogo} className="h-8 lg:h-12" alt="Header Logo" />
             <img src={HeaderLogoTitle} className="h-5 lg:h-8" alt="Recipe App" />
-            <button>ADD RECIPE</button>
+            <button onClick={() => navigate("/addrecipe")}>ADD RECIPE</button>
           </div>
           <div>
             <button

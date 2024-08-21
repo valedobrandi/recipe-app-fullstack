@@ -3,11 +3,12 @@ import { IMealRecipesModel } from '../Interfaces/mealRecipes/IMealRecipesModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import { IMealRecipes } from '../Interfaces/mealRecipes/IMealRecipes';
 import SequelizeMealRecipes from '../database/models/SequelizeMealRecipes';
+import { getAudioFile } from '../utils/speechToTesxt';
 
 const NOT_FOUND = 'Receita não encontrada!';
 
 export default class MealRecipeService {
-  constructor(private mealRecipeModel: IMealRecipesModel = new MealRecipeModel()) {}
+  constructor(private mealRecipeModel: IMealRecipesModel = new MealRecipeModel()) { }
 
   public async findAll(): Promise<ServiceResponse<IMealRecipes[]>> {
     const mealRecipes = await this.mealRecipeModel.findAll();
@@ -68,4 +69,15 @@ export default class MealRecipeService {
     if (!mealRecipe) return { status: 'NOT_FOUND', data: { message: NOT_FOUND } };
     return { status: 'SUCCESSFUL', data: { meals: mealRecipe } };
   }
+
+  /*   public async newRecipe(audioFile)
+    : Promise<ServiceResponse<string>> {
+    if (!audioFile) {
+      return { status: 'UNPROCESSABLE CONTENT', data: { message: 'Must sende a audio file.' } };
+    }
+
+    const response = await getAudioFile(audioFile);
+
+    return { status: 'SUCCESSFUL', data: response };
+  } */
 }

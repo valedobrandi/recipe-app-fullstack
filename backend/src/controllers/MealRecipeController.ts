@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import path = require('path');
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 import MealRecipeService from '../services/MealRecipeService';
 import MealCategoriesService from '../services/MealCategoriesService';
@@ -118,4 +119,67 @@ export default class MealRecipeController {
       next(error);
     }
   }
-}
+
+  // eslint-disable-next-line class-methods-use-this, max-lines-per-function
+  public async newRecipe(req: Request, res: Response, next: NextFunction) {
+    try {
+      const filePath = path.resolve(__dirname, 'uploads', '1724255722427-recording.wav');
+      const body = new FormData();
+      body.append('file', filePath);
+      
+      
+      let myHeaders = new Headers();
+      myHeaders.append("X-API-KEY", "");
+      const response = await fetch(
+        'https://techhk.aoscdn.com/api/tasks/audio/recognition',
+        {
+          method: 'POST',
+          headers: myHeaders,
+          body
+        },
+      );
+      const data = await response.json()
+      console.log(data);
+      
+      
+    } catch (error) {
+      next(error)
+    } 
+    }
+  }
+
+      /*      console.log(req.file);
+    
+    const filePath = path.resolve(__dirname, 'uploads', req.file.filename);
+    const body = new FormData() as any;
+    body.append('file', filePath); */
+    // formData.append('file', req.file.buffer, { filename: req.file.originalname, contentType: req.file.mimetype });
+    // console.log(formData);
+    /*       const body = new FormData();
+    body.append('file', formData); */
+    /*
+    const headers = new Headers();
+    headers.append('X-API-KEY', 'wxmrtqv60q4b2jjda');
+    
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      headers,
+      body,
+        redirect: 'follow',
+      }; */
+  
+  /*     const filePath = path.resolve(__dirname, 'uploads', req.file.filename);
+  
+  
+      const body = new FormData() as any;
+      body.append('file', filePath);
+      const headers = new Headers();
+  
+      headers.append('X-API-KEY', 'wxmrtqv60q4b2jjda');
+  
+      const requestOptions: RequestInit = {
+        method: 'POST',
+        headers,
+        body,
+        redirect: 'follow'
+      } */
