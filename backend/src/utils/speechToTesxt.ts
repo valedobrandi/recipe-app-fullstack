@@ -9,7 +9,7 @@ export async function getAudioTranslated(Bearer: Headers, taskId: string) {
 
 export async function getAudioFile(audioFile) {
   const headers = new Headers();
-  headers.append('X-API-KEY', 'wxmrtqv60q4b2jjda');
+  headers.append('X-API-KEY', '');
 
   const requestOptions: RequestInit = {
     method: 'POST',
