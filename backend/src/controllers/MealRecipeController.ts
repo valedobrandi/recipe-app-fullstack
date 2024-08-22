@@ -1,9 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
-import path = require('path');
+import * as dotenv from 'dotenv';
+import * as FormData from 'form-data';
+import * as fs from 'fs';
+import axios from 'axios';
+import * as path from 'path';
 import mapStatusHTTP from '../utils/mapStatusHTTP';
 import MealRecipeService from '../services/MealRecipeService';
 import MealCategoriesService from '../services/MealCategoriesService';
 import ingredientColumnsList from './utils/ArrayIngredients';
+
+dotenv.config();
 
 export default class MealRecipeController {
   constructor(
@@ -123,63 +129,24 @@ export default class MealRecipeController {
   // eslint-disable-next-line class-methods-use-this, max-lines-per-function
   public async newRecipe(req: Request, res: Response, next: NextFunction) {
     try {
-      const filePath = path.resolve(__dirname, 'uploads', '1724255722427-recording.wav');
-      const body = new FormData();
-      body.append('file', filePath);
-      
-      
-      let myHeaders = new Headers();
-      myHeaders.append("X-API-KEY", "");
-      const response = await fetch(
+      if (!process.env.VITE_SPEECH_API) throw new Error('variable undefined!');
+      if (!req.file) throw new Error('file required!');
+      console.log(req.file);
+
+      const stream = fs.createReadStream(req.file.path);
+      const form = new FormData();
+      form.append('file', stream);
+
+      const { data } = await axios.post(
         'https://techhk.aoscdn.com/api/tasks/audio/recognition',
-        {
-          method: 'POST',
-          headers: myHeaders,
-          body
-        },
+        form,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        { headers: { 'X-API-KEY': process.env.VITE_SPEECH_API } },
       );
-      const data = await response.json()
+
       console.log(data);
-      
-      
     } catch (error) {
-      next(error)
-    } 
+      next(error);
     }
   }
-
-      /*      console.log(req.file);
-    
-    const filePath = path.resolve(__dirname, 'uploads', req.file.filename);
-    const body = new FormData() as any;
-    body.append('file', filePath); */
-    // formData.append('file', req.file.buffer, { filename: req.file.originalname, contentType: req.file.mimetype });
-    // console.log(formData);
-    /*       const body = new FormData();
-    body.append('file', formData); */
-    /*
-    const headers = new Headers();
-    headers.append('X-API-KEY', 'wxmrtqv60q4b2jjda');
-    
-    const requestOptions: RequestInit = {
-      method: 'POST',
-      headers,
-      body,
-        redirect: 'follow',
-      }; */
-  
-  /*     const filePath = path.resolve(__dirname, 'uploads', req.file.filename);
-  
-  
-      const body = new FormData() as any;
-      body.append('file', filePath);
-      const headers = new Headers();
-  
-      headers.append('X-API-KEY', 'wxmrtqv60q4b2jjda');
-  
-      const requestOptions: RequestInit = {
-        method: 'POST',
-        headers,
-        body,
-        redirect: 'follow'
-      } */
+}

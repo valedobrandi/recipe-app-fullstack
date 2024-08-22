@@ -3,10 +3,12 @@ import upload from '../multer';
 import MealRecipeController from '../controllers/MealRecipeController';
 
 const mealRecipeController = new MealRecipeController();
+
 const router = Router();
 
 router.post(
   '/uploads/audio',
+  upload.single('file'),
   (
     req: Request,
     res: Response,

@@ -1,5 +1,6 @@
 import * as express from 'express';
 import 'express-async-errors';
+import * as bodyParser from 'body-parser';
 import router from './routes';
 
 import errorMiddleware from './middlewares/errorMiddleware';
@@ -31,6 +32,7 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
+    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   private routes(): void {
