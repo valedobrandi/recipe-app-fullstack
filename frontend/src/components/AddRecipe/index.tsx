@@ -9,7 +9,7 @@ export default function AddRecipe() {
   
 
   function getAudio(audio: Blob) {
-    console.log(audio);
+  
     
     const audioFileMeta = new File([audio], "recording.wav", {
       type: audio.type,
